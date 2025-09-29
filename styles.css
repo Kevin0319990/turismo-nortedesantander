@@ -1,0 +1,471 @@
+/*
+    Estilos CSS para Sitios Turísticos de Norte de Santander
+    Inspirado en la estructura de un template base (como Skel o HTML5 UP)
+*/
+
+/* ---------------------------------------------------- */
+/* 1. VARIABLES Y RESET BÁSICO                           */
+/* ---------------------------------------------------- */
+
+:root {
+    /* Paleta de colores basada en los tonos de la región y la naturaleza */
+    --color-principal: #007bff; /* Azul vibrante (Enlaces, Botones) */
+    --color-secundario: #28a745; /* Verde (Éxito, Destacados) */
+    --color-fondo-claro: #f8f9fa; /* Gris muy claro */
+    --color-fondo-oscuro: #343a40; /* Gris oscuro (Footer, Header) */
+    --color-texto-oscuro: #212529;
+    --color-texto-claro: #ffffff;
+    --color-acento: #ffc107; /* Amarillo/Dorado para acentos */
+    --max-width: 1200px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Fuente base */
+    color: var(--color-texto-oscuro);
+    line-height: 1.6;
+    background-color: var(--color-fondo-claro);
+    /* Desplazamiento suave para anclas (nav) */
+    scroll-behavior: smooth; 
+}
+
+a {
+    color: var(--color-principal);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: var(--color-secundario);
+}
+
+/* ---------------------------------------------------- */
+/* 2. ESTRUCTURA Y CLASES GLOBALES                      */
+/* ---------------------------------------------------- */
+
+.wrapper {
+    padding: 5em 0;
+}
+
+.inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5em;
+}
+
+/* Estilos de Sección */
+.wrapper.style2 {
+    background-color: var(--color-fondo-claro);
+}
+
+.wrapper.style3 {
+    background-color: var(--color-principal);
+    color: var(--color-texto-claro);
+}
+.wrapper.style3 a {
+    color: var(--color-acento);
+}
+.wrapper.style3 h2, .wrapper.style3 p {
+    color: var(--color-texto-claro);
+}
+
+/* Títulos y Encabezados */
+h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1em 0;
+    color: var(--color-texto-oscuro);
+}
+
+h2 {
+    font-size: 2.5em;
+    border-bottom: 2px solid var(--color-acento);
+    display: inline-block;
+    padding-bottom: 0.25em;
+    margin-bottom: 0.5em;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-center h2 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Botones */
+.button {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    background-color: var(--color-acento);
+    color: var(--color-texto-oscuro) !important;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.button:hover {
+    background-color: #ffda6a;
+}
+
+.button.alt {
+    background-color: var(--color-secundario);
+    color: var(--color-texto-claro) !important;
+}
+
+.button.alt:hover {
+    background-color: #36b758;
+}
+
+/* ---------------------------------------------------- */
+/* 3. HEADER Y NAVEGACIÓN (NAV)                         */
+/* ---------------------------------------------------- */
+
+#header {
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-claro);
+    height: 3.5em;
+    line-height: 3.5em;
+    padding: 0 1.5em;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+#header .logo {
+    font-weight: 800;
+    font-size: 1.2em;
+}
+
+#header .logo a {
+    color: var(--color-texto-claro);
+}
+
+#header .logo span {
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+/* Menú Toggle (Solo visible en móvil por defecto) */
+#header a[href="#menu"] {
+    color: var(--color-texto-claro);
+    font-size: 1.5em;
+    display: inline-block;
+    /* Temporal: oculta el texto "Menú" por el momento */
+    visibility: hidden; 
+}
+
+/* Navegación lateral (Nav #menu) */
+#menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Empieza fuera de la pantalla */
+    width: 250px;
+    height: 100%;
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-claro);
+    padding-top: 3.5em;
+    z-index: 1001;
+    transition: right 0.3s ease-in-out;
+}
+
+/* Simulación de estado "abierto" (esto requeriría JS para funcionar realmente) */
+/* body.is-menu-visible #menu {
+    right: 0;
+} */
+
+#menu .links {
+    list-style: none;
+}
+
+#menu .links a {
+    display: block;
+    padding: 0.75em 1.5em;
+    color: var(--color-texto-claro);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#menu .links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------------------------------------------------- */
+/* 4. SECCIÓN BANNER (SLIDER)                           */
+/* ---------------------------------------------------- */
+
+.banner {
+    display: flex;
+    overflow: hidden; /* Oculta los artículos que no son el principal */
+    width: 400%; /* Para contener los 4 artículos si fuera un carrusel */
+    height: 85vh; /* Altura de la vista */
+    position: relative;
+    /* Nota: Esto simula la estructura de un slider. El JS es crucial aquí. */
+}
+
+.banner article {
+    width: 25%; /* Cada artículo ocupa 1/4 del contenedor .banner */
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.7); /* Oscurece un poco la imagen */
+    transition: transform 0.5s ease;
+}
+
+.banner article:hover img {
+    transform: scale(1.05); /* Efecto zoom al pasar el ratón */
+}
+
+.banner .inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    color: var(--color-texto-claro);
+}
+
+.banner .inner h2 {
+    color: var(--color-texto-claro);
+    font-size: 3.5em;
+    border-bottom: none;
+    margin-bottom: 0.1em;
+}
+
+.banner .inner p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+/* ---------------------------------------------------- */
+/* 5. SECCIÓN SITIOS TURÍSTICOS (GRID)                  */
+/* ---------------------------------------------------- */
+
+.grid-style {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+    margin-top: 3em;
+}
+
+.box {
+    background-color: var(--color-texto-claro);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.box .image.fit {
+    width: 100%;
+    overflow: hidden;
+    /* Ajusta la altura de la imagen en la tarjeta si es necesario */
+    max-height: 200px; 
+}
+
+.box .image.fit img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.box:hover .image.fit img {
+    transform: scale(1.05);
+}
+
+.box .content {
+    padding: 1.5em;
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.box .content header {
+    padding-bottom: 1em;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.box .content h2 {
+    font-size: 1.5em;
+    border-bottom: none;
+}
+
+.box .content footer {
+    margin-top: auto; /* Empuja el footer al final de la tarjeta */
+    padding-top: 1em;
+}
+
+/* ---------------------------------------------------- */
+/* 6. SECCIÓN RESTAURANTES (GALLERY)                    */
+/* ---------------------------------------------------- */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+    margin-top: 3em;
+}
+
+.gallery .image.fit {
+    background-color: var(--color-texto-claro);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.gallery .image.fit img {
+    width: 100%;
+    height: 250px; /* Altura fija para uniformidad */
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery .image.fit a:hover img {
+    transform: scale(1.05);
+}
+
+.gallery .image.fit p {
+    padding: 1em 0;
+}
+
+/* ---------------------------------------------------- */
+/* 7. FOOTER Y CONTACTO                                 */
+/* ---------------------------------------------------- */
+
+#contacto {
+    /* Ajustar estilo en caso de ser la sección de contacto */
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+#contacto .inner {
+    max-width: 800px;
+}
+#contacto p {
+    margin: 0.5em 0;
+}
+
+#footer {
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-claro);
+    padding: 3em 0 1em 0;
+    text-align: center;
+}
+
+#footer .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5em;
+}
+
+#footer .icons {
+    list-style: none;
+    margin: 0 0 1.5em 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+#footer .icons li a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-texto-claro);
+    transition: background-color 0.2s ease-in-out;
+}
+
+#footer .icons li a:hover {
+    background-color: var(--color-principal);
+}
+
+#footer .copyright {
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+/* Ocultar texto del ícono */
+.icon .label {
+    display: none;
+}
+
+/* ---------------------------------------------------- */
+/* 8. RESPONSIVE (Móvil)                                */
+/* ---------------------------------------------------- */
+
+@media screen and (max-width: 736px) {
+    /* Encabezados */
+    h2 {
+        font-size: 1.75em;
+    }
+
+    /* Estructura */
+    .wrapper {
+        padding: 3em 0;
+    }
+    .inner {
+        padding: 0 1em;
+    }
+
+    /* Banner */
+    .banner {
+        height: 60vh;
+    }
+    .banner .inner h2 {
+        font-size: 2em;
+    }
+    .banner .inner p {
+        font-size: 1em;
+    }
+
+    /* Header (Menú) */
+    #header {
+        position: fixed; /* Header fijo en móvil */
+        top: 0;
+        left: 0;
+        /* Vuelve a mostrar el botón de menú en móvil */
+        height: 3em; 
+        line-height: 3em;
+    }
+    #header a[href="#menu"] {
+        visibility: visible;
+        width: 3em;
+        height: 3em;
+        text-align: center;
+        /* Simula un icono de hamburguesa */
+        content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>');
+    }
+    
+    #header .logo {
+        font-size: 1em;
+    }
+}
